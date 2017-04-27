@@ -1,5 +1,6 @@
 package by.htp.Lesson7.parsers;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +35,7 @@ public class HandlerDOM {
 		return equipments;
 	}
 
+	Manager m1;
 	Map<Manager, List<RentUnit>> clientRentedItems;
 
 	public Map<Manager, List<RentUnit>> getClientRentedItems() {
@@ -46,18 +48,19 @@ public class HandlerDOM {
 		System.out.println(root);
 
 		// Manager
-		Manager m1 = new Manager();
+		m1 = new Manager();
 		NodeList nodeList = doc.getElementsByTagName("Manager");
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			Element element = (Element) nodeList.item(i);
-			ManagerID = Integer.parseInt(element.getAttributes().getNamedItem("ID").getNodeValue());
-			ManagerName = element.getAttributes().getNamedItem("Name").getNodeValue();
+			ManagerID = Integer.parseInt(element.getAttributes().getNamedItem("ManagerID").getNodeValue());
+			ManagerName = element.getAttributes().getNamedItem("ManagerName").getNodeValue();
 			m1.setIdManager(ManagerID);
 			m1.setNameManager(ManagerName);
 		}
+
 		// ===========Add all Ski
 		nodeList = doc.getElementsByTagName("Ski");
-		List<RentUnit> equipments = new ArrayList<RentUnit>();
+		equipments = new ArrayList<RentUnit>();
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			Element element = (Element) nodeList.item(i);
 			brand = element.getElementsByTagName("Brand").item(0).getChildNodes().item(0).getNodeValue();
@@ -118,25 +121,25 @@ public class HandlerDOM {
 			equipments.add(new SnowboardAccessories(colour, brand, name, price, type, isRented));
 		}
 		// Map
-		nodeList = doc.getElementsByTagName("RentStation");
-		Map<Manager, List<RentUnit>> clientRentedItems = new HashMap<Manager, List<RentUnit>>();
+		//nodeList = doc.getElementsByTagName("RentStation");
+		clientRentedItems = new HashMap<Manager, List<RentUnit>>();		
 		clientRentedItems.put(m1, equipments);
 	}
 
 	public void definEquipmentCategory(String str) {
-		if (str.equals(Category.ADULT)) {
+		if (str.equals(Category.ADULT.toString())) {
 			category = Category.ADULT;
-		} else if (str.equals(Category.CHILD)) {
+		} else if (str.equals(Category.CHILD.toString())) {
 			category = Category.CHILD;
 		}
 	}
 
 	public void definAccessoriseType(String str) {
-		if (str.equals(AccessoriesType.CLOTHES)) {
+		if (str.equals(AccessoriesType.CLOTHES.toString())) {
 			type = AccessoriesType.CLOTHES;
-		} else if (str.equals(AccessoriesType.OTHER)) {
+		} else if (str.equals(AccessoriesType.OTHER.toString())) {
 			type = AccessoriesType.OTHER;
-		} else if (str.equals(AccessoriesType.PROTECTION)) {
+		} else if (str.equals(AccessoriesType.PROTECTION.toString())) {
 			type = AccessoriesType.PROTECTION;
 		}
 	}

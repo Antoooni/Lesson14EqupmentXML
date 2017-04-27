@@ -113,28 +113,4 @@ public class RentStationServiceImpl implements RentStationService {
 		
 	}
 
-	// @Override
-	// public RentUnit[] searchItem(String brand, boolean isRented) {
-	// RentUnit equpmentStockFound[] = new
-	// RentUnit[station.getEqupmentStock().length];
-	// int j = 0;
-	// RentUnit[] equpmentStock = station.getEqupmentStock();
-	// for (int i = 0; i < equpmentStock.length; i++) {
-	// if (equpmentStock[i] != null) {
-	// if (equpmentStock[i].getBrand() == brand && equpmentStock[i].isRented()
-	// == isRented) {
-	// equpmentStockFound[j] = equpmentStock[i];
-	// j = j + 1;// save index !=null
-	// }
-	// }
-	// }
-	// RentUnit equpmentStockFoundNew[] = new RentUnit[j];
-	// for (int i = 0; i < equpmentStockFound.length; i++) {
-	// if (equpmentStockFound[i] != null) {
-	// equpmentStockFoundNew[i] = equpmentStockFound[i];
-	// }
-	// }
-	// return equpmentStockFoundNew;
-	// }
-
 }

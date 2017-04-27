@@ -22,9 +22,9 @@ public class ParserDOMServiceImpl {
 	public Map<Manager, List<RentUnit>> getAllData() throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder documentBuilder = factory.newDocumentBuilder();
-		Document doc = documentBuilder
-				.parse(new File("C:/Users/ayumazec/workspace_IT_Academy/Lesson7EquipmentMap/source/RentStation.xml"));
+		Document doc = documentBuilder.parse(new File("C:/Users/ayumazec/workspace_IT_Academy/Lesson7EquipmentMap/source/RentStation.xml"));
 		handlerDom.startProcess(doc);
+		
 		return handlerDom.getClientRentedItems();
 	}
 

@@ -44,21 +44,20 @@ public class HandlerSAX extends DefaultHandler {
 		return clientRentedItems;
 	}
 
-	@Override
-	public void startDocument() throws SAXException {
-		System.out.println("Start parsing...");
-	}
+//	@Override
+//	public void startDocument() throws SAXException {
+//		System.out.println("Start parsing...");
+//	}
 
-	@Override
-	public void endDocument() throws SAXException {
-		System.out.println("End parsing.");
-	}
+//	@Override
+//	public void endDocument() throws SAXException {
+//		System.out.println("End parsing.");
+//	}
 
 	@Override
 	public void startElement(String nameSpace, String localName, String qName, Attributes attributes)
 			throws SAXException {
-		element = qName; // в element записывается имя тега при парсинге
-
+		element = qName; 
 		switch (element) {
 		case "RentUnits": {
 			equipments = new ArrayList<RentUnit>();
@@ -87,24 +86,24 @@ public class HandlerSAX extends DefaultHandler {
 
 	@Override
 	public void endElement(String nameSpace, String localName, String qName) throws SAXException {
-		switch (element) {
+		switch (qName) {
 		case "Ski": {
-			equipments.add(new Ski(qName, category, price, isRented));
+			equipments.add(new Ski(brand, category, price, isRented));
 		}
 			break;
 		case "Snowboard": {
-			equipments.add(new Snowboard(qName, category, price, isRented));
+			equipments.add(new Snowboard(brand, category, price, isRented));
 		}
 			break;
 		case "SkiAccessorise": {
-			equipments.add(new SkiAccessories(qName, name, colour, price, type, isRented));
+			equipments.add(new SkiAccessories(brand, colour, name, price, type, isRented));
 		}
 			break;
 		case "SnowboardAccessorise": {
-			equipments.add(new SnowboardAccessories(qName, name, colour, price, type, isRented));
+			equipments.add(new SnowboardAccessories(brand, colour, name, price, type, isRented));
 		}
 			break;
-		case "<Managers>": {
+		case "Managers": {
 			m1.setIdManager(ManagerID);
 			m1.setNameManager(ManagerName);
 		}
@@ -119,8 +118,6 @@ public class HandlerSAX extends DefaultHandler {
 
 	@Override
 	public void characters(char[] ch, int start, int end) throws SAXException {
-		// String str = new String(ch, start, end);
-		// System.out.println(str);
 		switch (element) {
 		case "Brand": {
 			brand = new String(ch, start, end);
@@ -152,19 +149,19 @@ public class HandlerSAX extends DefaultHandler {
 	}
 
 	public void definEquipmentCategory(String str) {
-		if (str.equals(Category.ADULT)) {
+		if (str.equals(Category.ADULT.toString())) {
 			category = Category.ADULT;
-		} else if (str.equals(Category.CHILD)) {
+		} else if (str.equals(Category.CHILD.toString())) {
 			category = Category.CHILD;
 		}
 	}
 
 	public void definAccessoriseType(String str) {
-		if (str.equals(AccessoriesType.CLOTHES)) {
+		if (str.equals(AccessoriesType.CLOTHES.toString())) {
 			type = AccessoriesType.CLOTHES;
-		} else if (str.equals(AccessoriesType.OTHER)) {
+		} else if (str.equals(AccessoriesType.OTHER.toString())) {
 			type = AccessoriesType.OTHER;
-		} else if (str.equals(AccessoriesType.PROTECTION)) {
+		} else if (str.equals(AccessoriesType.PROTECTION.toString())) {
 			type = AccessoriesType.PROTECTION;
 		}
 	}

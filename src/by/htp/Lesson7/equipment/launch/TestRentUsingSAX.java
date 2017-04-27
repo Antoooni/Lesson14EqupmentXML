@@ -15,15 +15,11 @@ public class TestRentUsingSAX {
 		// SAX - parser
 		ParserSAXServiceImpl parserService = new ParserSAXServiceImpl();
 		parserService.getAllData();
-
-		
-		
-		
 		
 		// all other services
 		RentStationService rentStationSevice = new RentStationServiceImpl(parserService.getEquipment());
 		System.out.println("Whole Stock: ");
-		rentStationSevice.showAvailable(parserService.getEquipment());////////////////////////////////////////////// until empty equipment!!!!
+		rentStationSevice.showAvailable(parserService.getEquipment());
 
 		String toFindByBrand = "Fisher";
 
@@ -34,11 +30,9 @@ public class TestRentUsingSAX {
 		List<RentUnit> foundItems = new ArrayList<RentUnit>();
 		foundItems = rentStationSevice.findItem(parserService.getEquipment(), toFindByBrand, false);
 
-		//rentStationSevice.printOrder(parserService.getAllData());
-
 		// all available in station after client renting
 		rentStationSevice.defOfRemaining(parserService.getEquipment(), foundItems);
-		System.out.println('\n' + "All available items: ");
+		System.out.println('\n' + "All available items after rent: ");
 		rentStationSevice.showAvailable(parserService.getEquipment());
 
 	}
